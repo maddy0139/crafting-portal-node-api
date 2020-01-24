@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost:27017/crafting-portal'
+    url: process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + process.env.OPENSHIFT_MONGODB_DB_HOST + 'crafting-portal';'
 }
