@@ -1,3 +1,3 @@
 module.exports = {    
-    url: 'mongodb://$MONGODB_USER:$MONGODB_PASSWORD@localhost:27017/crafting-portal'
+    url: 'mongodb://maddy:Unix11!@localhost:27017/crafting-portal'
 }
