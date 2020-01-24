@@ -33,5 +33,5 @@ require('./app/routes/user.routes')(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/subcategory.routes')(app);
 app.listen(port, () => {
-    console.log('server is listening on port 3000');
+    console.log('server is listening on port ', port);
 });
