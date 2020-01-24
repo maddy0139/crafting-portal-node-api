@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 mongoose.Promise = global.Promise;
-console.log('dbConfig.url', dbConfig.url);
+console.log('dbConfig.url', process.env);
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
