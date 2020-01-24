@@ -4,7 +4,7 @@ const dbConfig = require('./config/database.config');
 const mongoose = require('mongoose');
 
 const app = express();
-
+const port  = process.env.NODEJS_PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(bodyParser.json())
@@ -32,6 +32,6 @@ require('./app/routes/category.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/auth.routes')(app);
 require('./app/routes/subcategory.routes')(app);
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('server is listening on port 3000');
 });
