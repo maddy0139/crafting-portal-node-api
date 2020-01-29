@@ -2,8 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dbConfig = require('./config/database.config');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 const port  = process.env.NODEJS_PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }))
 
