@@ -20,15 +20,76 @@ exports.create = ((req,res) => {
     });
 });
 
+// exports.findOne = ((req,res) => {
+//     User.findById(req.params.userId)
+//     .then((user) => {
+//         if(!user){
+//             res.status(404).send({
+//                 message: 'User not found with id' + req.params.userId
+//             });
+//         }
+//         res.send(user);
+//     })
+//     .catch((error) => {
+//         res.status(500).send({
+//             message: 'Internal Server error'
+//         })
+//     });
+// });
+
 exports.findOne = ((req,res) => {
-    User.findById(req.params.userId)
+    User.find({userName: req.params.userName})
     .then((user) => {
         if(!user){
             res.status(404).send({
-                message: 'User not found with id' + req.params.userId
+                message: 'User not found with id' + req.params.userName
             });
         }
         res.send(user);
+    })
+    .catch((error) => {
+        res.status(500).send({
+            message: 'Internal Server error'
+        })
+    });
+});
+
+exports.existsByUsername = ((req,res) => {
+    User.find({userName: req.query.userName})
+    .then((user) => {
+        if(!user.length){
+            res.send({
+                available: true,
+                message: 'Username is available'
+            });
+        } else{
+            res.send({
+                available: false,
+                message: 'Username is already taken!'
+            })
+        }
+    })
+    .catch((error) => {
+        res.status(500).send({
+            message: 'Internal Server error'
+        })
+    });
+});
+
+exports.existsByEmail = ((req,res) => {
+    User.find({email: req.query.email})
+    .then((user) => {
+        if(!user.length){
+            res.send({
+                available: true,
+                message: 'email is available'
+            });
+        } else{
+            res.send({
+                available: false,
+                message: 'Email Address already in use!'
+            })
+        }
     })
     .catch((error) => {
         res.status(500).send({
