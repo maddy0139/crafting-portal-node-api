@@ -2,12 +2,12 @@ const ValidationMiddleware = require('../authorization/auth.validatation.middlew
 module.exports = (app) => {
     const subCategories = require('../controllers/subcategory.controller');
 
-    app.post('/api/subcategory', [ValidationMiddleware.validJWTNeeded, subCategories.create]);
+    app.post('/api/subcategory', [subCategories.create]);
 
-    app.get('/api/subcategories', [ValidationMiddleware.validJWTNeeded, subCategories.findAll]);
+    app.get('/api/subcategories', [subCategories.findAll]);
 
-    app.get('/api/subcategory/:subCategoryId', [ValidationMiddleware.validJWTNeeded, subCategories.findOne]);
+    app.get('/api/subcategory/:subCategoryId', [subCategories.findOne]);
 
-    app.delete('/api/subcategory/:subCategoryId', [ValidationMiddleware.validJWTNeeded, subCategories.delete]);
+    app.delete('/api/subcategory/:subCategoryId', [subCategories.delete]);
 
 }   
