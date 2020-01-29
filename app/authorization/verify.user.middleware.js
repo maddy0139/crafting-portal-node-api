@@ -5,7 +5,7 @@ exports.hasAuthValidFields = (req, res, next) => {
     let errors = [];
 
     if (req.body) {
-        if (!req.body.email) {
+        if (!req.body.userName) {
             errors.push('Missing email field');
         }
         if (!req.body.password) {
@@ -23,7 +23,7 @@ exports.hasAuthValidFields = (req, res, next) => {
 };
 
 exports.isPasswordAndUserMatch = (req, res, next) => {
-    User.find({email: req.body.email})
+    User.find({userName: req.body.userName})
         .then((user)=>{
             if(!user[0]){
                 res.status(404).send({});
@@ -34,6 +34,7 @@ exports.isPasswordAndUserMatch = (req, res, next) => {
                 if (hash === passwordFields[1]) {
                     req.body = {
                         userId: user[0]._id,
+                        userName: user[0].userName,
                         email: user[0].email,
                         permissionLevel: user[0].permissionLevel,
                         provider: 'email',
