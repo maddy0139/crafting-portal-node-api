@@ -1,5 +1,5 @@
 const Category = require("../models/category.model");
-const Response = require("../responses/response");
+const Response = require("../responses/Response");
 
 exports.create = (req, res) => {
   if (!req.body.title) {
