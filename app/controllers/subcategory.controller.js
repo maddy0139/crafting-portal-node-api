@@ -1,13 +1,15 @@
-const SubCategory = require("../models/subcategory.model");
+const SubCategory = require('../models/subcategory.model');
 
 exports.create = (req, res) => {
   if (!req.body.title) {
     return res.status(400).send({
-      message: "body can not be empty"
+      message: 'body can not be empty'
     });
   }
   const subCategory = new SubCategory({
     title: req.body.title,
+    imageUrl: req.body.imageUrl,
+    details: req.body.details,
     categoryId: req.body.categoryId
   });
 
@@ -32,7 +34,7 @@ exports.findAll = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: err.message || "Some error occurred while retrieving notes."
+          message: err.message || 'Some error occurred while retrieving notes.'
         });
       });
   } else {
@@ -42,7 +44,7 @@ exports.findAll = (req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: err.message || "Some error occurred while retrieving notes."
+          message: err.message || 'Some error occurred while retrieving notes.'
         });
       });
   }
@@ -54,20 +56,20 @@ exports.findOne = (req, res) => {
     .then(subCategory => {
       if (!subCategory) {
         return res.status(404).send({
-          message: "Sub Category not found with id " + req.params.subCategoryId
+          message: 'Sub Category not found with id ' + req.params.subCategoryId
         });
       }
       res.send(subCategory);
     })
     .catch(err => {
-      if (err.kind === "ObjectId") {
+      if (err.kind === 'ObjectId') {
         return res.status(404).send({
-          message: "Sub Category not found with id " + req.params.subCategoryId
+          message: 'Sub Category not found with id ' + req.params.subCategoryId
         });
       }
       return res.status(500).send({
         message:
-          "Error retrieving Sub Category with id " + req.params.subCategoryId
+          'Error retrieving Sub Category with id ' + req.params.subCategoryId
       });
     });
 };
@@ -81,21 +83,21 @@ exports.delete = (req, res) => {
     .then(data => {
       if (!data) {
         return res.status(404).send({
-          message: "Sub Category not found with id " + req.params.subCategoryId
+          message: 'Sub Category not found with id ' + req.params.subCategoryId
         });
       }
       res.send({
-        message: "Sub Category deleted successfully!"
+        message: 'Sub Category deleted successfully!'
       });
     })
     .catch(error => {
-      if (error.kind === "ObjectId" || error.name === "NotFound") {
+      if (error.kind === 'ObjectId' || error.name === 'NotFound') {
         return res.status(404).send({
-          message: "Sub Category not found with id " + req.params.subCategoryId
+          message: 'Sub Category not found with id ' + req.params.subCategoryId
         });
       } else {
         return res.status(500).send({
-          message: "Internal Server Error"
+          message: 'Internal Server Error'
         });
       }
     });
