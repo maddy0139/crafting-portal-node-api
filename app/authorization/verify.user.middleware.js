@@ -23,7 +23,7 @@ exports.hasAuthValidFields = (req, res, next) => {
 };
 
 exports.isPasswordAndUserMatch = (req, res, next) => {
-    User.find({userName: req.body.userName})
+    User.find({username: req.body.userName})
         .then((user)=>{
             if(!user[0]){
                 res.status(404).send({});
@@ -34,7 +34,7 @@ exports.isPasswordAndUserMatch = (req, res, next) => {
                 if (hash === passwordFields[1]) {
                     req.body = {
                         userId: user[0]._id,
-                        userName: user[0].userName,
+                        userName: user[0].username,
                         email: user[0].email,
                         permissionLevel: user[0].permissionLevel,
                         provider: 'email',
